@@ -1,27 +1,43 @@
-package readinglist;
+package readinglist.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.Id;
 
 @Entity
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String reader;
 
+    @Column(unique = true)
     private String isbn;
 
     private String title;
 
     private String author;
 
+    @Column(length = 2000)
     private String description;
+
+    public Book() {
+    }
+
+    public Book(Long id, String reader, String isbn, String title, String author, String description) {
+        this.id = id;
+        this.reader = reader;
+        this.isbn = isbn;
+        this.title = title;
+        this.author = author;
+        this.description = description;
+    }
+
+    // Getter 和 Setter 方法
 
     public Long getId() {
         return id;
@@ -69,5 +85,17 @@ public class Book {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", reader='" + reader + '\'' +
+                ", isbn='" + isbn + '\'' +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }
