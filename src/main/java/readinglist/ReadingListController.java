@@ -22,7 +22,7 @@ public class ReadingListController {
     @RequestMapping(value = "/{reader}", method = RequestMethod.GET)
     public String readersBooks(@PathVariable("reader") String reader, Model model) {
         List<Book> readingList = readingListRepository.findByReader(reader);
-        if (readinglist != null) {
+        if (readingList != null) {
             model.addAttribute("books", readingList);
         }
         return "readingList";
@@ -30,7 +30,7 @@ public class ReadingListController {
 
     @RequestMapping(value = "/{reader}", method = RequestMethod.POST)
     public String addToReadingList(@PathVariable("reader") String reader, Book book) {
-        boo.setReader(reader);
+        book.setReader(reader);
         readingListRepository.save(book);
         return "redirect:/{reader}";
     }
